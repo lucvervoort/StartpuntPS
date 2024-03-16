@@ -1,0 +1,13 @@
+## Vereist:
+## 1. SqlServer onder Docker
+Zie Chamilo
+## 2. Seq onder Docker
+docker pull datalust/seq
+## 3. dotnet ef tool
+dotnet tool install --global dotnet-ef
+dotnet tool update --global dotnet-ef
+## 4. Vul je command line opdrachten hieronder aan!
+## dotnet ef commando's altijd in de hoofdfolder van je solution
+dotnet ef dbcontext scaffold "Name=ConnectionStrings:DefaultConnectionString" Microsoft.EntityFrameworkCore.SqlServer --context-dir Context --output-dir Models -p .\Libraries\Assignment.Repository -s Apps\Assignment.Console.App --force## 5. Log zoveel mogelijk informatie van EF Core naar Seq via SeriLog: queries, errors, ...
+dotnet ef migrations add InitialCreate -p Libraries\Assignment.Repository -s Apps\Assignment.Console.App --context MyNorthwindContext
+dotnet ef database update -p Libraries\Assignment.Repository -s Apps\Assignment.Console.App --context MyNorthwindContext
